@@ -1,0 +1,19 @@
+.contact-icon{
+    font-size: 320px !important;
+    margin-top: 50px;
+    
+}
+
+.container{
+    text-align: center;
+}
+
+.button-container{
+    width:15%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+}
