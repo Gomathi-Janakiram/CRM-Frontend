@@ -1,5 +1,5 @@
 import { Typography,Container,Card,CardContent,Button,Table,TableBody,TableHead,TableCell,TableContainer,Paper, TableRow,makeStyles} from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
+import {Add,Delete,Edit} from '@material-ui/icons';
 import {React,useState,useEffect }from 'react';
 import './contact.css'
 
@@ -43,29 +43,34 @@ const Contacts=()=>{
             <Card className='card'>
                 <CardContent className='card-head'>
                     <Typography variant='h5'>Contacts</Typography>
-                    <Button color='primary' variant='contained'><AddIcon className='icon'/>Add Contact</Button>
+                    <Button color='primary' variant='contained'><Add className='icon'/>Add Contact</Button>
                 </CardContent>
             </Card>
 
             <TableContainer component={Paper} className={classes.table}>
                 <Table >
                     <TableHead>
-                        <TableRow classname='row'>
+                        <TableRow className='row'>
                             <TableCell align='center'>First Name</TableCell>
                             <TableCell align='center'>Last Name</TableCell>
                             <TableCell align='center'>Mail Id</TableCell>
                             <TableCell align='center'>Company Name</TableCell>
                             <TableCell align='center'>Contact Number</TableCell>
+                            <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {data && data.map((item)=>(
-                            <TableRow key={item._id} classname='row'>
+                            <TableRow key={item._id} className='row tableRow'>
                                 <TableCell align='center'>{item.firstName}</TableCell>
                                 <TableCell align='center'>{item.lastName}</TableCell>
                                 <TableCell align='center'>{item.email}</TableCell>
                                 <TableCell align='center'>{item.company}</TableCell>
                                 <TableCell align='center'>{item.Phone}</TableCell>
+                                <TableCell align='center'>
+                                    <Button startIcon={<Edit/>} variant='contained' color='primary'>Edit</Button>
+                                    <Button startIcon={<Delete/>} variant='contained' color='secondary' className='deleteIcon'>Delete</Button>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

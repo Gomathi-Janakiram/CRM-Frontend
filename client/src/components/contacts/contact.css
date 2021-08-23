@@ -29,8 +29,16 @@
 
 }
 
+.tableRow:hover{
+    background-color:rgb(247,248,249);
+}
+
 TableCell{
     color:rgb(247,248,249) !important
+}
+
+.deleteIcon{
+    margin-left:15px !important;
 }
 
 
