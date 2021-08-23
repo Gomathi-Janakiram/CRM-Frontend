@@ -1,0 +1,36 @@
+
+.section{
+    text-align: start;
+}
+
+.heading{
+    margin: 25px 0 0 0 !important;
+    color:#7986cb;
+}
+
+.card{
+    margin: 25px 0 0 0 !important;
+    box-shadow: none !important;
+}
+
+.card-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon{
+    margin-right: 3px;
+}
+
+.row{
+    border-bottom-color:rgb(247,248,249);
+    color:rgb(247,248,249) !important
+
+}
+
+TableCell{
+    color:rgb(247,248,249) !important
+}
+
+
