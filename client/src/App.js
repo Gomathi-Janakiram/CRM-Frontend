@@ -6,7 +6,7 @@ import Contacts from './components/contacts/contact'
 
 function App() {
   return (
-    <div className="App" style={{backgroundColor:'rgb(247,248,249)'}}>
+    <div className="App" style={{backgroundColor:'rgb(247,248,249)',minHeight:'100vh'}}>
       <header className="App-header">
         <Navbar/>
         <Router>
