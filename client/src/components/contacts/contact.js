@@ -1,4 +1,4 @@
-import { Typography,Container,Card,CardContent,Button,Table,TableBody,TableHead,TableCell,TableContainer,Paper, TableRow,makeStyles} from '@material-ui/core';
+import { Typography,Container,Card,CardContent,Button,Table,TableBody,TableHead,TableCell,TableContainer,Paper,TableRow,makeStyles,Dialog,DialogTitle,DialogContent,DialogContentText,DialogActions} from '@material-ui/core';
 import {Add,Delete,Edit} from '@material-ui/icons';
 import {React,useState,useEffect }from 'react';
 import './contact.css'
@@ -15,7 +15,11 @@ const useStyles=makeStyles({
 
 const Contacts=()=>{
 
+    const [open,setOpen]=useState(false)
+
     const [data,setData]=useState([])
+
+    const [deleteData,setDeleteData]=useState({})
 
     useEffect(()=>{
         fetch('http://localhost:4000/contact')
@@ -25,11 +29,41 @@ const Contacts=()=>{
         .then(data=>{
             setData(data)
         })
-    },[])
+    })
+
+    const deleteContact=(item)=>{
+        fetch("http://localhost:4000/contact/delete",{
+            method:"delete",
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify(item)
+        })
+        .then(res=>{
+            return res.json()
+        })
+        .then(result=>{
+            console.log(result)
+        })
+    }
 
 
-    console.log(data)
 
+    const handleDelete=()=>{
+        console.log(deleteData)
+        deleteContact(deleteData)
+        handleClose()
+    }
+
+
+    const handleOpen=(item)=>{
+        setOpen(true)
+        setDeleteData(item)
+    }
+
+    const handleClose=()=>{
+        setOpen(false)
+    }
 
 
     const classes=useStyles()
@@ -43,7 +77,7 @@ const Contacts=()=>{
             <Card className='card'>
                 <CardContent className='card-head'>
                     <Typography variant='h5'>Contacts</Typography>
-                    <Button color='primary' variant='contained'><Add className='icon'/>Add Contact</Button>
+                    <Button color='primary' variant='contained' href='/addContact'><Add className='icon'/>Add Contact</Button>
                 </CardContent>
             </Card>
 
@@ -69,13 +103,29 @@ const Contacts=()=>{
                                 <TableCell align='center'>{item.Phone}</TableCell>
                                 <TableCell align='center'>
                                     <Button startIcon={<Edit/>} variant='contained' color='primary'>Edit</Button>
-                                    <Button startIcon={<Delete/>} variant='contained' color='secondary' className='deleteIcon'>Delete</Button>
+                                    <Button startIcon={<Delete/>} variant='contained' color='secondary' className='deleteIcon' onClick={()=>handleOpen(item)}>Delete</Button>
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+            >
+                <DialogTitle>
+                        Delete Contact
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>Are You sure? Do you want to delete the contact</DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleDelete}>Delete</Button>
+                </DialogActions>
+            </Dialog>
+
 
         </Container>
     )
