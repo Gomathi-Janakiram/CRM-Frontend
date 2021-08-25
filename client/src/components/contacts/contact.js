@@ -118,15 +118,13 @@ const Contacts=()=>{
                         Delete Contact
                 </DialogTitle>
                 <DialogContent>
-                    <DialogContentText>Are You sure? Do you want to delete the contact</DialogContentText>
+                    <DialogContentText><p>Are you sure? Do you want to delete the contact <span style={{fontWeight:'bolder'}}>{`${deleteData.firstName} ${deleteData.lastName}`}</span>?</p></DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleDelete}>Delete</Button>
+                    <Button onClick={handleClose} color='primary' variant='contained'>Cancel</Button>
+                    <Button onClick={handleDelete} color='secondary' variant='contained'>Delete</Button>
                 </DialogActions>
             </Dialog>
-
-
         </Container>
     )
 }
