@@ -9,11 +9,11 @@
 }
 
 .button-container{
-    width:15%;
+    width:25%;
     margin: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     margin-top: 30px;
 }
