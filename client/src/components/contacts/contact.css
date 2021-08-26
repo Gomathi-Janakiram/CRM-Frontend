@@ -1,44 +1,50 @@
-
-.section{
-    text-align: start;
+.section {
+  text-align: start;
 }
 
-.heading{
-    margin: 25px 0 0 0 !important;
-    color:#7986cb;
+.heading {
+  margin: 25px 0 0 0 !important;
+  color: #7986cb;
 }
 
-.card{
-    margin: 25px 0 0 0 !important;
-    box-shadow: none !important;
+.card {
+  margin: 25px 0 0 0 !important;
+  box-shadow: none !important;
 }
 
-.card-head{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.icon{
-    margin-right: 3px;
+.icon {
+  margin-right: 3px;
 }
 
-.row{
-    border-bottom-color:rgb(247,248,249);
-    color:rgb(247,248,249) !important
-
+.row {
+  border-bottom-color: rgb(247, 248, 249);
+  color: rgb(247, 248, 249) !important;
 }
 
-.tableRow:hover{
-    background-color:rgb(247,248,249);
+.tableRow:hover {
+  background-color: rgb(247, 248, 249);
 }
 
-TableCell{
-    color:rgb(247,248,249) !important
+TableCell {
+  color: rgb(247, 248, 249) !important;
 }
 
-.deleteIcon{
-    margin-left:15px !important;
+.deleteIcon {
+  margin-left: 15px !important;
 }
-
-
+.edit-btn {
+  margin-top: 50px !important;
+  margin-left: 250px !important;
+  padding: 15px 25px 15px 25px !important;
+  background-color: green !important;
+  color: white !important;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
