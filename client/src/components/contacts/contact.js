@@ -39,6 +39,14 @@ const Contacts = () => {
   const [deleteData, setDeleteData] = useState({});
   const [editData, setEditData] = useState({});
 
+  const [changeData, setChangeData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    Phone: "",
+    company: "",
+  });
+
   useEffect(() => {
     fetch("http://localhost:4000/contact")
       .then((res) => {
@@ -47,7 +55,7 @@ const Contacts = () => {
       .then((data) => {
         setData(data);
       });
-  });
+  }, []);
 
   const deleteContact = (item) => {
     fetch("http://localhost:4000/contact/delete", {
@@ -72,6 +80,8 @@ const Contacts = () => {
   const handleEditClose = () => {
     setEditModal(false);
   };
+
+  console.log(editData);
 
   const classes = useStyles();
   return (
@@ -178,13 +188,59 @@ const Contacts = () => {
         <DialogContent>
           <DialogContentText>
             <Typography variant="h4" color="primary" className="heading">
-              Create New Contact
+              Edit Contact
             </Typography>
             <form>
-              <TextField></TextField>
+              <TextField
+                label="First Name"
+                variant="outlined"
+                className="fields"
+                value={editData.firstName}
+                onChange={(e) =>
+                  setChangeData({ ...changeData, firstName: e.target.value })
+                }
+              />
+              <TextField
+                label="Last Name"
+                variant="outlined"
+                className="fields"
+                value={editData.lastName}
+                onChange={(e) =>
+                  setChangeData({ ...changeData, lastName: e.target.value })
+                }
+              />
+              <TextField
+                label="Email Id"
+                variant="outlined"
+                className="fields"
+                value={editData.email}
+                onChange={(e) =>
+                  setChangeData({ ...changeData, email: e.target.value })
+                }
+              />
+              <TextField
+                label="Company"
+                variant="outlined"
+                className="fields"
+                value={editData.company}
+                onChange={(e) =>
+                  setChangeData({ ...changeData, company: e.target.value })
+                }
+              />
+              <TextField
+                label="Contact Number"
+                variant="outlined"
+                className="fields"
+                value={editData.Phone}
+                onChange={(e) =>
+                  setChangeData({ ...changeData, Phone: e.target.value })
+                }
+              />
+              <button className="edit-btn">Edit</button>
             </form>
           </DialogContentText>
         </DialogContent>
+
         <DialogActions></DialogActions>
       </Dialog>
     </Container>
