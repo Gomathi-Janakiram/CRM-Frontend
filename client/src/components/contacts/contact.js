@@ -18,7 +18,9 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
+  Snackbar,
 } from "@material-ui/core";
+import MuiAlert from "@material-ui/lab/Alert";
 import { Add, Delete, Edit } from "@material-ui/icons";
 import { React, useState, useEffect } from "react";
 import "./contact.css";
@@ -30,6 +32,10 @@ const useStyles = makeStyles({
   },
 });
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 const Contacts = () => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
@@ -39,15 +45,10 @@ const Contacts = () => {
   const [deleteData, setDeleteData] = useState({});
   const [editData, setEditData] = useState({});
 
-  const [changeData, setChangeData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    Phone: "",
-    company: "",
-  });
+  const [editOpen, setEditOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
-  useEffect(() => {
+  const getData = () => {
     fetch("http://localhost:4000/contact")
       .then((res) => {
         return res.json();
@@ -55,6 +56,10 @@ const Contacts = () => {
       .then((data) => {
         setData(data);
       });
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
   const deleteContact = (item) => {
@@ -70,6 +75,8 @@ const Contacts = () => {
       })
       .then(() => {
         handleDeleteClose();
+        setDeleteOpen(true);
+        getData();
       });
   };
 
@@ -81,7 +88,27 @@ const Contacts = () => {
     setEditModal(false);
   };
 
-  console.log(editData);
+  const editContact = (data) => {
+    fetch("http://localhost:4000/contact/edit", {
+      method: "put",
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then(() => {
+        setEditOpen(true);
+        getData();
+      });
+  };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    editContact(editData);
+  };
 
   const classes = useStyles();
   return (
@@ -197,7 +224,7 @@ const Contacts = () => {
                 className="fields"
                 value={editData.firstName}
                 onChange={(e) =>
-                  setChangeData({ ...changeData, firstName: e.target.value })
+                  setEditData({ ...editData, firstName: e.target.value })
                 }
               />
               <TextField
@@ -206,7 +233,7 @@ const Contacts = () => {
                 className="fields"
                 value={editData.lastName}
                 onChange={(e) =>
-                  setChangeData({ ...changeData, lastName: e.target.value })
+                  setEditData({ ...editData, lastName: e.target.value })
                 }
               />
               <TextField
@@ -215,7 +242,7 @@ const Contacts = () => {
                 className="fields"
                 value={editData.email}
                 onChange={(e) =>
-                  setChangeData({ ...changeData, email: e.target.value })
+                  setEditData({ ...editData, email: e.target.value })
                 }
               />
               <TextField
@@ -224,7 +251,7 @@ const Contacts = () => {
                 className="fields"
                 value={editData.company}
                 onChange={(e) =>
-                  setChangeData({ ...changeData, company: e.target.value })
+                  setEditData({ ...editData, company: e.target.value })
                 }
               />
               <TextField
@@ -233,16 +260,37 @@ const Contacts = () => {
                 className="fields"
                 value={editData.Phone}
                 onChange={(e) =>
-                  setChangeData({ ...changeData, Phone: e.target.value })
+                  setEditData({ ...editData, Phone: e.target.value })
                 }
               />
-              <button className="edit-btn">Edit</button>
+              <button className="edit-btn" onClick={handleEdit}>
+                Edit
+              </button>
             </form>
           </DialogContentText>
         </DialogContent>
-
         <DialogActions></DialogActions>
       </Dialog>
+
+      <Snackbar open={editOpen} onCLose={() => setEditOpen(false)}>
+        <Alert
+          open={editOpen}
+          onClose={() => setEditOpen(false)}
+          severity="success"
+        >
+          Updated Contact Successfully
+        </Alert>
+      </Snackbar>
+
+      <Snackbar open={deleteOpen} onCLose={() => setDeleteOpen(false)}>
+        <Alert
+          open={deleteOpen}
+          onClose={() => setDeleteOpen(false)}
+          severity="error"
+        >
+          Contact Deleted Successfully
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };
