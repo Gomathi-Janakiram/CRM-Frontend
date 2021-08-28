@@ -108,6 +108,7 @@ const Contacts = () => {
   const handleEdit = (e) => {
     e.preventDefault();
     editContact(editData);
+    handleEditClose()
   };
 
   const classes = useStyles();
@@ -272,7 +273,7 @@ const Contacts = () => {
         <DialogActions></DialogActions>
       </Dialog>
 
-      <Snackbar open={editOpen} onCLose={() => setEditOpen(false)}>
+      <Snackbar open={editOpen} onCLose={() => setEditOpen(false)} anchorOrigin={{vertical:"top",horizontal:"right"}}>
         <Alert
           open={editOpen}
           onClose={() => setEditOpen(false)}
@@ -282,7 +283,7 @@ const Contacts = () => {
         </Alert>
       </Snackbar>
 
-      <Snackbar open={deleteOpen} onCLose={() => setDeleteOpen(false)}>
+      <Snackbar open={deleteOpen} onCLose={() => setDeleteOpen(false)} anchorOrigin={{vertical:"top",horizontal:"right"}}>
         <Alert
           open={deleteOpen}
           onClose={() => setDeleteOpen(false)}
