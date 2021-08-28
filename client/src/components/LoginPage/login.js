@@ -11,9 +11,9 @@ const LoginPage=()=>{
     const history=useHistory()
 
     return(
-        <div className='container'>
+        <div className='container' style={{marginTop:'70px'}}>
             <Paper>
-            <Typography variant='h2' color='primary' className='heading'>Log In</Typography>
+            <Typography variant='h3' color='primary' className='heading'>LOGIN</Typography>
             {errorMessage && <div>{errorMessage}</div>}
             <form className='form-wrapper'>
                 <TextField className='fields' label='Email' variant='outlined' required='true' onChange={e=>setEmail(e.target.value)}/>
