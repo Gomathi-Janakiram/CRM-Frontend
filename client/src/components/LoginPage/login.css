@@ -1,0 +1,13 @@
+.button-wrapper{
+    display: flex !important;
+    flex-direction: row;
+    margin-top: 50px;
+    justify-content:space-between;
+    align-items: center;
+    width: 300px;
+    margin-left:30%;
+}
+
+.signup-btn{
+    margin-top:30px;
+}
