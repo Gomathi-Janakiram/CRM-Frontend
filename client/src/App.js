@@ -1,6 +1,7 @@
 import HomePage from './components/homePage/home'
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 import Navbar from './components/navbar/navbar'
+import LoginPage from './components/LoginPage/login'
 import AddContact from './components/addContact/contact'
 import Contacts from './components/contacts/contact'
 
@@ -13,6 +14,9 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <HomePage/>
+            </Route>
+            <Route exact path='/login'>
+                <LoginPage/>
             </Route>
             <Route exact path='/addContact'>
               <AddContact/>
