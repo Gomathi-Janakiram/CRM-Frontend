@@ -40,8 +40,8 @@ const Navbar=() => {
                   Contact Keeper
               </Link>
           </Typography>
-          <Button color="inherit" href='/contacts'>View</Button>
-          <Button color="inherit" href='/addContact'>Create</Button>
+          <Button color="inherit" href='/login'>LOGIN</Button>
+          <Button color="inherit" href='/signup'>SIGN UP</Button>
         </Toolbar>
       </AppBar>
     </div>
